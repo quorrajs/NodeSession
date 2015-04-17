@@ -1,0 +1,33 @@
+{
+  "name": "node-session",
+  "version": "0.0.1-alpha",
+  "description": "Session management for NodeJS",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha",
+    "start": "node index.js"
+  },
+  "dependencies": {
+  }
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/quorrajs/Node-session"
+  },
+  "keywords": [
+    "session",
+    "store",
+    "cookie",
+    "manager"
+  ],
+  "author": {
+    "name": "Harish Anchu",
+    "email": "harishanchu@gmail.com"
+  },
+  "bugs": {
+    "url": "https://github.com/quorrajs/Node-session/issues"
+  },
+  "engines": {
+    "node": ">=0.10.0"
+  },
+  "license": "MIT"
+}

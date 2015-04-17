@@ -1,0 +1,12 @@
+node_modules
+.idea
+todo
+dev
+test
+.travis.yml
+.gitignore
+.npmignore
+npm-debug.log
+docs
+mkdocs.yml
+examples
