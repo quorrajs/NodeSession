@@ -8,6 +8,9 @@
     "start": "node index.js"
   },
   "dependencies": {
+    "dot-access": "0.0.5",
+    "lodash": "^3.6.0",
+    "uid-safe": "^1.1.0",
   }
   "repository": {
     "type": "git",
