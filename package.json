@@ -8,9 +8,13 @@
     "start": "node index.js"
   },
   "dependencies": {
+    "cookie": "^0.1.2",
+    "cookie-signature": "^1.0.6",
     "deasync": "0.0.10",
     "dot-access": "0.0.5",
+    "encrypter": "0.0.11-alpha",
     "lodash": "^3.6.0",
+    "on-headers": "^1.0.0",
     "uid-safe": "^1.1.0",
     "waterline": "^0.10.21"
 
