@@ -8,9 +8,12 @@
     "start": "node index.js"
   },
   "dependencies": {
+    "deasync": "0.0.10",
     "dot-access": "0.0.5",
     "lodash": "^3.6.0",
     "uid-safe": "^1.1.0",
+    "waterline": "^0.10.21"
+
   }
   "repository": {
     "type": "git",
