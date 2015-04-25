@@ -18,7 +18,7 @@
     "uid-safe": "^1.1.0",
     "waterline": "^0.10.21"
 
-  }
+  },
   "repository": {
     "type": "git",
     "url": "https://github.com/quorrajs/Node-session"
