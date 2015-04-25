@@ -17,11 +17,10 @@
     "on-headers": "^1.0.0",
     "uid-safe": "^1.1.0",
     "waterline": "^0.10.21"
-
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/quorrajs/Node-session"
+    "url": "https://github.com/quorrajs/NodeSession"
   },
   "keywords": [
     "session",
@@ -34,10 +33,14 @@
     "email": "harishanchu@gmail.com"
   },
   "bugs": {
-    "url": "https://github.com/quorrajs/Node-session/issues"
+    "url": "https://github.com/quorrajs/NodeSession/issues"
   },
   "engines": {
     "node": ">=0.10.0"
   },
-  "license": "MIT"
+  "license": "MIT",
+  "devDependencies": {
+    "mocha": "^2.2.4",
+    "should": "^6.0.1"
+  }
 }
