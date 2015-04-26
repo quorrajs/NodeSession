@@ -20,20 +20,36 @@ var cookie = require('cookie');
  * @constructor
  */
 function NodeSession(config, encrypter) {
+    var defaults = {
+        'driver': 'file',
+        'lifetime': 300000, // five minutes
+        'expireOnClose': false,
+        'files': process.cwd()+'/sessions',
+        'connection': false,
+        'table': 'sessions',
+        'lottery': [2, 100],
+        'cookie': 'node_session',
+        'path': '/',
+        'domain': null,
+        'secure': false,
+        'httpOnly': true,
+        'encrypt': false
+    };
+
     /**
      * The Session configuration
      *
      * @type {Object}
      * @private
      */
-    this.__config = config;
+    this.__config = _.merge(defaults, config);
 
     /**
      * The session manager instance
      * @type {SessionManager}
      * @private
      */
-    this.__manager = new SessionManager(config, encrypter);
+    this.__manager = new SessionManager(this.__config, encrypter);
 }
 
 /**
@@ -63,7 +79,10 @@ NodeSession.prototype.startSession = function (request, response, callback) {
 
         ended = true;
 
-        self.__closeSession(request.session, function () {
+        self.__closeSession(request.session, function (err) {
+            if(err) {
+                throw err;
+            }
             end.apply(response, endArguments);
         });
 
@@ -203,7 +222,7 @@ NodeSession.prototype.__setCookie = function (request, response, name, val, opti
         var signed = options.signed;
 
         if (signed && !secret) {
-            throw new Error('Application encryption key is required for signed cookies');
+            throw new Error('An encryption key is required for signed cookies');
         }
 
         if ('number' == typeof val) {
@@ -248,7 +267,7 @@ NodeSession.prototype.__setCookie = function (request, response, name, val, opti
  */
 NodeSession.prototype.__isSecure = function (request) {
     // socket is https server
-    if (request.connection && req.connection.encrypted) {
+    if (request.connection && request.connection.encrypted) {
         return true;
     }
 
@@ -295,7 +314,7 @@ NodeSession.prototype.__getCookie = function (request, name) {
                 val = this.__unsignCookie(raw.slice(2));
 
                 if (val === false) {
-                    console.error('cookie signature invalid');
+                    //console.error('cookie signature invalid');
                     val = undefined;
                 }
             }
