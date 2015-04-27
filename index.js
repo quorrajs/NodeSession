@@ -50,6 +50,10 @@ function NodeSession(config, encrypter) {
      * @private
      */
     this.__manager = new SessionManager(this.__config, encrypter);
+
+    if (!this.__config.secret) {
+        throw new Error('secret option required for sessions');
+    }
 }
 
 /**
