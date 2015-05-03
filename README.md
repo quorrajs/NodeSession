@@ -5,6 +5,9 @@ Since HTTP driven applications are stateless, sessions provide a way to store in
 NodeSession ships with a variety of session back-ends available for use through a clean, unified API. Support for
 back-ends such as File and databases is included out of the box.
 
+[![npm version](https://badge.fury.io/js/node-session.svg)](http://badge.fury.io/js/node-session)
+[![Build Status](https://travis-ci.org/quorrajs/NodeSession.svg?branch=master)](https://travis-ci.org/quorrajs/NodeSession)
+
 - [Installation](#installation)
 - [Session Usage](#session-usage)
 - [Configuration](#configuration)
@@ -127,7 +130,7 @@ req.session.keep('username', 'email');
 
 ##configuration
 
-Configuration object is passed during initialization of NodeSession module. NodeSession supports following configuration
+Configuration options are passed during initialization of NodeSession module as an object. NodeSession supports following configuration
 options.
 
 ```javascript
@@ -332,10 +335,11 @@ The NodeSession uses the flash session key internally, so you should not add an 
 When using the database session driver, you may need to setup a table to contain the session items based on database.
 Below is a required schema for the table:
 
-field           type            index
-id              string          unique
-payload         string
-lastActivity    integer
+| filed        | type    | index  |
+|--------------|---------|--------|
+| id           | string  | unique |
+| payload      | string  |        |
+| lastActivity | integer |        |
 
 
 ##Session Drivers
@@ -343,10 +347,10 @@ lastActivity    integer
 The session "driver" defines where session data will be stored for each request. NodeSession ships with several great
 drivers out of the box:
 
-file - sessions will be stored in files in a specified location.
-database - sessions will be stored in a database.
+- file - sessions will be stored in files in a specified location.
+- database - sessions will be stored in a database.
 
-##todo
+##To do
 
 - Add redis session driver
 
