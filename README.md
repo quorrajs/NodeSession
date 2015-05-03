@@ -12,6 +12,7 @@ back-ends such as File and databases is included out of the box.
 - [Session Usage](#session-usage)
 - [Configuration](#configuration)
 - [Flash Data](#flash-data)
+- [CSRF Token](#csrf-token)
 - [Database Sessions](#database-sessions)
 - [Session Drivers](#session-drivers)
 
@@ -127,6 +128,24 @@ req.session.reflash();
 ```javascript
 req.session.keep('username', 'email');
 ```
+
+
+##CSRF Token
+
+By default NodeSession generates and keeps CSRF token for your application in session.
+
+**Access CSRF token**
+
+```javascript
+req.session.getToken()
+```
+
+**Regenerate CSRF token**
+
+```javascript
+req.session.regenerateToken()
+```
+
 
 ##configuration
 
