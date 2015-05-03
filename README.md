@@ -16,7 +16,7 @@ back-ends such as File and databases is included out of the box.
 - [Database Sessions](#database-sessions)
 - [Session Drivers](#session-drivers)
 
-##Installation
+## Installation
 
 The source is available for download from [GitHub](https://github.com/quorrajs/NodeSession). Alternatively, you
 can install using Node Package Manager (npm):
@@ -24,7 +24,7 @@ can install using Node Package Manager (npm):
 ```javascript
 npm install node-session
 ```
-##Session Usage
+## Session Usage
 
 **Initialization**
 
@@ -108,7 +108,7 @@ req.session.regenerate();
 ```
 
 
-##Flash Data
+## Flash Data
 
 Sometimes you may wish to store items in the session only for the next request. You may do so using the
 `req.session.flash` method:
@@ -130,10 +130,10 @@ req.session.keep('username', 'email');
 ```
 
 
-##CSRF Token
+## CSRF Token
 
 By default NodeSession generates and keeps CSRF token for your application in session.
-
+ 
 **Access CSRF token**
 
 ```javascript
@@ -147,7 +147,7 @@ req.session.regenerateToken()
 ```
 
 
-##configuration
+## configuration
 
 Configuration options are passed during initialization of NodeSession module as an object. NodeSession supports following configuration
 options.
@@ -349,7 +349,7 @@ options.
 The NodeSession uses the flash session key internally, so you should not add an item to the session by that name.
 
 
-##Database Sessions
+## Database Sessions
 
 When using the database session driver, you may need to setup a table to contain the session items based on database.
 Below is a required schema for the table:
@@ -361,7 +361,7 @@ Below is a required schema for the table:
 | lastActivity | integer |        |
 
 
-##Session Drivers
+## Session Drivers
 
 The session "driver" defines where session data will be stored for each request. NodeSession ships with several great
 drivers out of the box:
@@ -369,11 +369,11 @@ drivers out of the box:
 - file - sessions will be stored in files in a specified location.
 - database - sessions will be stored in a database.
 
-##To do
+## To do
 
 - Add redis session driver
 
-##License
+## License
 
 The NodeSession is open-sourced software licensed under the [MIT license](http://opensource.org/licenses/MIT).
 

@@ -1,6 +1,6 @@
 {
   "name": "node-session",
-  "version": "0.0.1-alpha",
+  "version": "0.0.1-alpha.1",
   "description": "Session management for NodeJS",
   "main": "index.js",
   "scripts": {
