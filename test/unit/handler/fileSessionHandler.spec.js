@@ -77,7 +77,7 @@ describe('FileSessionHandler', function(){
                         handler3.write(sessionId3, testData, function(err){
                             if(err) done(err);
 
-                            handler.gc(500);
+                            handler.gc(1000);
 
                             setTimeout(function(){
                                 handler1.read(sessionId1, function(data){
@@ -94,7 +94,7 @@ describe('FileSessionHandler', function(){
                                 });
                             }, 100)
                         })
-                    },1000);
+                    },1500);
                 });
             });
         })
