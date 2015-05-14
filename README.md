@@ -7,6 +7,7 @@ back-ends such as File and databases is included out of the box.
 
 [![npm version](https://badge.fury.io/js/node-session.svg)](http://badge.fury.io/js/node-session)
 [![Build Status](https://travis-ci.org/quorrajs/NodeSession.svg?branch=master)](https://travis-ci.org/quorrajs/NodeSession)
+[![Quality](https://codeclimate.com/github/quorrajs/NodeSession/badges/gpa.svg)](https://codeclimate.com/github/quorrajs/NodeSession)
 
 - [Installation](#installation)
 - [Session Usage](#session-usage)
