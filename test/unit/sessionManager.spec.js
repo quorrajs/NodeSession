@@ -14,7 +14,8 @@ var Store = require('../../lib/store/Store');
 describe('SessionManager', function(){
     var driver = 'file';
     var manager = new SessionManager({
-        driver: driver
+        driver: driver,
+        files: "./test/sessions"
     });
 
     describe('#constructor', function(){
