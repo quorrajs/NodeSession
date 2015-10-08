@@ -10,7 +10,7 @@
   "dependencies": {
     "cookie": "^0.1.2",
     "cookie-signature": "^1.0.6",
-    "deasync": "0.0.10",
+    "deasync": "0.1.2",
     "dot-access": "0.0.5",
     "encrypter": "0.0.11-alpha",
     "fs-extra": "^0.24.0",
