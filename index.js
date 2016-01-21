@@ -11,6 +11,7 @@ var onHeaders = require('on-headers');
 var _ = require('lodash');
 var signature = require('cookie-signature');
 var cookie = require('cookie');
+var util = require('./lib/util');
 
 /**
  * Create a new NodeSession instance
@@ -43,6 +44,10 @@ function NodeSession(config, encrypter) {
      * @private
      */
     this.__config = _.merge(defaults, config);
+
+    if(this.__config.trustProxy && !this.__config.trustProxyFn) {
+        this.__config.trustProxyFn = util.compileTrust(this.__config.trustProxy)
+    }
 
     /**
      * The session manager instance
@@ -270,22 +275,27 @@ NodeSession.prototype.__setCookie = function (request, response, name, val, opti
  * @private
  */
 NodeSession.prototype.__isSecure = function (request) {
+    var proto;
+
     // socket is https server
     if (request.connection && request.connection.encrypted) {
-        return true;
+        proto = 'https'
+    } else {
+        proto = 'http';
     }
 
-    // do not trust proxy
-    if (!this.__config.trustProxy) {
-        return false;
+    if (this.__config.trustProxy &&
+        this.__config.trustProxyFn &&
+        this.__config.trustProxyFn(request.connection.remoteAddress, 0)) {
+        // Note: X-Forwarded-Proto is normally only ever a
+        //       single value, but this is to be safe.
+        // read the proto from x-forwarded-proto header
+        var header = request.headers['x-forwarded-proto'] || '';
+        var index = header.indexOf(',');
+        proto = (index !== -1
+            ? header.substr(0, index).toLowerCase().trim()
+            : header.toLowerCase().trim()) || proto;
     }
-
-    // read the proto from x-forwarded-proto header
-    var header = request.headers['x-forwarded-proto'] || '';
-    var index = header.indexOf(',');
-    var proto = index !== -1
-        ? header.substr(0, index).toLowerCase().trim()
-        : header.toLowerCase().trim();
 
     return proto === 'https';
 };

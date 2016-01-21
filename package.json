@@ -1,6 +1,6 @@
 {
   "name": "node-session",
-  "version": "0.0.1-alpha.2",
+  "version": "0.0.1-alpha.3",
   "description": "Session management for NodeJS",
   "main": "index.js",
   "scripts": {
@@ -16,6 +16,7 @@
     "fs-extra": "^0.24.0",
     "lodash": "^3.6.0",
     "on-headers": "^1.0.0",
+    "proxy-addr": "^1.0.7",
     "uid-safe": "^1.1.0",
     "waterline": "^0.10.21"
   },
