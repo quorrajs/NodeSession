@@ -36,23 +36,22 @@ describe('SessionManager', function(){
     describe('method#driver', function(){
         describe('with no attributes', function(){
             it('should create and return instance of session store with default session handler', function(done){
-                var driver = manager.driver();
+                manager.driver(null, function(driver) {
+                    driver.should.be.an.instanceOf(Store);
+                    driver.getHandler().should.be.an.instanceOf(FileSessionHandler);
 
-                driver.should.be.an.instanceOf(Store);
-                driver.getHandler().should.be.an.instanceOf(FileSessionHandler);
-
-                done();
+                    done();
+                });
             });
         });
 
         describe('with driver attribute \'file\'', function(){
             it('should create and return instance of session store with file session handler', function(done){
-                var driver = manager.driver('file');
+                manager.driver('file', function(driver) {driver.should.be.an.instanceOf(Store);
+                    driver.getHandler().should.be.an.instanceOf(FileSessionHandler);
 
-                driver.should.be.an.instanceOf(Store);
-                driver.getHandler().should.be.an.instanceOf(FileSessionHandler);
-
-                done();
+                    done();
+                });
             });
         });
 
@@ -65,12 +64,13 @@ describe('SessionManager', function(){
                         adapter: 'sails-disk'
                     }
                 });
-                var driver = manager.driver('database');
 
-                driver.should.be.an.instanceOf(Store);
-                driver.getHandler().should.be.an.instanceOf(DatabaseSessionHandler);
+                manager.driver('database', function(driver) {
+                    driver.should.be.an.instanceOf(Store);
+                    driver.getHandler().should.be.an.instanceOf(DatabaseSessionHandler);
 
-                done();
+                    done();
+                });
             });
         });
 

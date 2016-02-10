@@ -109,23 +109,26 @@ NodeSession.prototype.startSession = function (request, response, callback) {
  * @private
  */
 NodeSession.prototype.__startSession = function (request, callback) {
-    var session = request.session = this.getSession(request);
+    this.getSession(request, function(session) {
+        request.session = session;
 
-    session.start(callback);
+        session.start(callback);
+    });
 };
 
 /**
  * Get the session implementation from the manager.
  *
  * @param {Object} request - http request object
- * @return {Object} session object
+ * @param {function} callback - callback to return session object
  */
-NodeSession.prototype.getSession = function (request) {
-    var session = this.__manager.driver();
+NodeSession.prototype.getSession = function (request, callback) {
+    var self = this;
+    this.__manager.driver(null, function(session){
+        session.setId(self.__getCookie(request, session.getName()));
 
-    session.setId(this.__getCookie(request, session.getName()));
-
-    return session;
+        callback(session);
+    });
 };
 
 /**

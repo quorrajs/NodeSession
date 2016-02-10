@@ -432,17 +432,18 @@ describe('Store', function(){
 
             should(store.setExists(true)).not.throw();
 
-            var sessionModel = (new SessionManager({table: 'session', connection: { adapter: 'sails-disk'}})).__getSessionModel();
-            handler =  new DatabaseSessionHandler(sessionModel);
-            store = new Store('node_session', handler);
+            (new SessionManager({table: 'session', connection: { adapter: 'sails-disk'}})).__getSessionModel(function(sessionModel) {
+                handler =  new DatabaseSessionHandler(sessionModel);
+                store = new Store('node_session', handler);
 
-            sinon.spy(handler, 'setExists');
+                sinon.spy(handler, 'setExists');
 
-            store.setExists(true);
+                store.setExists(true);
 
-            handler.setExists.calledOnce.should.be.ok;
+                handler.setExists.calledOnce.should.be.ok;
 
-            done();
+                done();
+            });
         });
     });
 
