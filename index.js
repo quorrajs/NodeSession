@@ -201,7 +201,7 @@ NodeSession.prototype.__collectGarbage = function (session) {
     // the odds needed to perform garbage collection on any given request. If we do
     // hit it, we'll call this handler to let it delete all the expired sessions.
     if (this.__configHitsLottery()) {
-        session.getHandler().gc(this.__config.lifetime);
+        session.getHandler().gc && session.getHandler().gc(this.__config.lifetime);
     }
 };
 
