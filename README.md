@@ -177,7 +177,7 @@ options.
      | requests. By default, NodeSession will use the lightweight file driver but
      | you may specify any of the other wonderful drivers provided here.
      |
-     | Supported: "file", "database"
+     | Supported: "memory", "file", "database"
      |
      */
 
@@ -367,6 +367,9 @@ Below is a required schema for the table:
 The session "driver" defines where session data will be stored for each request. NodeSession ships with several great
 drivers out of the box:
 
+- memory - sessions will be stored in memory. Memory session driver is purposely not designed for a production
+environment. It will leak memory under most conditions, does not scale past a single process, and is meant for
+debugging and developing.
 - file - sessions will be stored in files in a specified location.
 - database - sessions will be stored in a database.
 

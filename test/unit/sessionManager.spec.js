@@ -8,6 +8,7 @@
 
 var SessionManager = require('../../lib/SessionManager');
 var FileSessionHandler = require('../../lib/handler/FileSessionHandler');
+var MemorySessionHandler = require('../../lib/handler/MemorySessionHandler');
 var DatabaseSessionHandler = require('../../lib/handler/DatabaseSessionHandler');
 var Store = require('../../lib/store/Store');
 
@@ -49,6 +50,16 @@ describe('SessionManager', function(){
             it('should create and return instance of session store with file session handler', function(done){
                 manager.driver('file', function(driver) {driver.should.be.an.instanceOf(Store);
                     driver.getHandler().should.be.an.instanceOf(FileSessionHandler);
+
+                    done();
+                });
+            });
+        });
+
+        describe('with driver attribute \'memory\'', function(){
+            it('should create and return instance of session store with memmory session handler', function(done){
+                manager.driver('memory', function(driver) {driver.should.be.an.instanceOf(Store);
+                    driver.getHandler().should.be.an.instanceOf(MemorySessionHandler);
 
                     done();
                 });
