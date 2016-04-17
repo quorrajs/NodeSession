@@ -530,4 +530,33 @@ describe('Store', function(){
             });
         });
     });
+
+    describe('method#migrate', function () {
+        it('should migrate session without calling destroy when force migrate attribute is not set', function (done) {
+            var handler =  new FileSessionHandler(sessionStoragePath);
+            var store = new Store('node_session', handler);
+            var oldId = store.getId();
+
+            sinon.spy(handler, 'destroy');
+            store.migrate();
+            handler.destroy.notCalled.should.be.ok;
+            oldId.should.not.be.equal(store.getId());
+
+            done();
+        });
+
+        it('should migrate session with calling destroy method with sessionid as argument when force migrate attribute' +
+        ' is set to true', function (done) {
+            var handler =  new FileSessionHandler(sessionStoragePath);
+            var store = new Store('node_session', handler);
+            var oldId = store.getId();
+
+            sinon.spy(handler, 'destroy');
+            store.migrate(true);
+            handler.destroy.calledWith(oldId).should.be.ok;
+            oldId.should.not.be.equal(store.getId());
+
+            done();
+        });
+    });
 });
