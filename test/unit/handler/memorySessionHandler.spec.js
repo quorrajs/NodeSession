@@ -2,7 +2,7 @@ var MemorySessionHandler = require('../../../lib/handler/MemorySessionHandler');
 var SessionManager = require('../../../lib/SessionManager');
 
 describe('MemorySessionHandler', function(){
-    var handler = new MemorySessionHandler();
+    var handler = new MemorySessionHandler(Object.create(null));
     var sessionId = 'testsession';
     var testData = 'testData';
 
