@@ -352,5 +352,14 @@ NodeSession.prototype.__unsignCookie = function (val) {
     return signature.unsign(val, this.__config.secret);
 };
 
+/**
+ * Update session manager encrypter service.
+ *
+ * @param {Object} encrypter
+ */
+NodeSession.prototype.setEncrypter = function (encrypter) {
+    this.__manager.setEncrypter(encrypter);
+};
+
 
 module.exports = NodeSession;
